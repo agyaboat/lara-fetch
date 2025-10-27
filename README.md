@@ -91,7 +91,7 @@ laraConfigure({
 ```
 
 ### Config options:
-```md
+
 | Option           | Purpose                          | Default                 |
 | ---------------- | -------------------------------- | ----------------------- |
 | `baseURL`        | Your Laravel API root            | `http://localhost:8000` |
@@ -100,7 +100,7 @@ laraConfigure({
 | `defaultHeaders` | Global headers for requests      | JSON headers            |
 | `credentials`    | Include cookies for Sanctum auth | `include`               |
 | `debug`          | Enables console logs             | `false`                 |
-```
+
 
 
 ## 🎛️ Per-request Override
