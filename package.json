@@ -1,0 +1,18 @@
+{
+  "name": "lara-fetch",
+  "version": "0.1.0",
+  "description": "Vanilla JS fetch wrapper for Laravel SPAs with CSRF support",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "prepare": "echo 'No build needed, vanilla JS ready to use'"
+  },
+  "keywords": ["laravel", "fetch", "csrf", "spa", "vanilla-js"],
+  "author": "Agyemang Bright <github.com/agyaboat/>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agyaboat/lara-fetch.git"
+  }
+}
