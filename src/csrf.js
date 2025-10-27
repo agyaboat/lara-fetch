@@ -1,35 +1,35 @@
-// --------------------
-// laraCsrf function
-// --------------------
-export async function laraCsrf(csrfPath, host, debug = false) {
-  // Debug log before fallback
-  if (debug && !host) console.warn('laraCsrf => no host provided, using http://localhost:8000');
-  if (debug && !csrfPath) console.warn('laraCsrf => no csrfPath provided, using /sanctum/csrf-cookie');
+import { config } from './config.js';
 
-  // Fallbacks
-  host = host || 'http://localhost:8000';
-  csrfPath = csrfPath || '/sanctum/csrf-cookie';
+export async function laraCsrf(override = {}) {
+  const { baseURL, csrfPath, debug } = { ...config, ...override };
+
+  if (debug && !override.baseURL) {
+    console.warn(`laraCsrf => no host override, using ${baseURL}`);
+  }
 
   const csrfCookieName = 'XSRF-TOKEN';
-  const hasCookie = document.cookie.split('; ').some(row => row.startsWith(csrfCookieName + '='));
+  const hasCookie = document.cookie
+    .split('; ')
+    .some(row => row.startsWith(csrfCookieName + '='));
+
   if (hasCookie) {
-    if (debug) console.log('laraCsrf => CSRF cookie already exists, skipping fetch');
+    if (debug) console.log('laraCsrf => CSRF cookie already exists ✅');
     return;
   }
 
-  if (debug) console.log(`laraCsrf => fetching CSRF cookie from ${host + csrfPath}`);
+  const url = baseURL + csrfPath;
+  if (debug) console.log(`laraCsrf => fetching CSRF cookie from ${url}`);
 
-  try {
-    const res = await fetch(host + csrfPath, {
-      method: 'GET',
-      credentials: 'include'
-    });
+  const res = await fetch(url, {
+    method: 'GET',
+    credentials: 'include'
+  });
 
-    if (!res.ok) throw new Error('Failed to fetch CSRF token');
-
-    if (debug) console.log('laraCsrf => CSRF cookie fetched successfully');
-  } catch (err) {
-    if (debug) console.error('laraCsrf => error fetching CSRF token:', err);
+  if (!res.ok) {
+    const err = new Error(`Failed CSRF fetch: ${res.status}`);
+    if (debug) console.error('laraCsrf =>', err);
     throw err;
   }
+
+  if (debug) console.log('laraCsrf => CSRF cookie fetched ✅');
 }
