@@ -14,5 +14,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/agyaboat/lara-fetch.git"
-  }
+  },
+  "types": "index.d.ts"
 }
