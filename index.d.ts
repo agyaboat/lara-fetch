@@ -1,8 +1,10 @@
 export interface LaraConfig {
-  baseURL?: string;
-  csrfPath?: string;
-  credentials?: RequestCredentials;
-  debug?: boolean;
+    baseURL?: string;
+    csrfPath?: string;
+    credentials?: RequestCredentials;
+    debug?: boolean;
+    defaultHeaders?: Record<string, string>;
+    xsrfCookieName?: string;
 }
 
 export declare const config: Required<LaraConfig>;
@@ -10,11 +12,11 @@ export declare const config: Required<LaraConfig>;
 export declare function laraConfigure(options?: LaraConfig): void;
 
 export declare function laraCsrf(
-  override?: LaraConfig
+    override?: LaraConfig
 ): Promise<void>;
 
 export declare function laraFetch(
-  path: string,
-  options?: RequestInit,
-  override?: LaraConfig
+    path: string,
+    options?: RequestInit,
+    override?: LaraConfig
 ): Promise<Response>;

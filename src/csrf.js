@@ -7,7 +7,7 @@ export async function laraCsrf(override = {}) {
     console.warn(`laraCsrf => no host override, using ${baseURL}`);
   }
 
-  const csrfCookieName = 'XSRF-TOKEN';
+  const csrfCookieName = config.xsrfCookieName || 'XSRF-TOKEN';
   const hasCookie = document.cookie
     .split('; ')
     .some(row => row.startsWith(csrfCookieName + '='));
