@@ -6,8 +6,8 @@
 
 A tiny fetch wrapper that handles **Laravel Sanctum CSRF** like a boss.
 
----
 <br>
+---
 
 ## ⚡ Quick Features
 
@@ -22,9 +22,8 @@ A tiny fetch wrapper that handles **Laravel Sanctum CSRF** like a boss.
 
 Small library. Main character energy. 😎
 
----
-
 <br><br>
+---
 
 ## 🚀 Install
 
@@ -60,7 +59,6 @@ const data = await res.json();
 
 console.log(data);
 ```
-<br>
 
 ### POST Example
 
