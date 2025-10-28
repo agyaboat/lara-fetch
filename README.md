@@ -17,8 +17,9 @@ A tiny fetch wrapper that handles **Laravel Sanctum CSRF** like a boss.
 - ✅ Zero-config convenience for **local development**
 - ✅ Full configuration control for **production**
 - ✅ Per-request overrides (just a **3rd param**)
+- ✅ **GET / POST / PUT / PATCH / DELETE** helper methods
 - ✅ Debug mode for console tracing
-- ✅ Lightweight — no Axios bloat
+- ✅ Lightweight
 
 Small library. Main character energy. 😎
 ---
@@ -80,9 +81,9 @@ console.log(data);
 Configure once globally:
 
 ```js
-import { laraConfigure } from "lara-fetch";
+import { laraFetch } from "lara-fetch";
 
-laraConfigure({
+laraFetch.configure({
   baseURL: "https://api.example.com",
   csrfPath: "/sanctum/csrf-cookie",
   credentials: "include",
@@ -92,6 +93,12 @@ laraConfigure({
     "Content-Type": "application/json",
   },
 });
+
+
+//=============  OR =================== 
+{ laraConfigure } from "lara-fetch";
+laraConfigure({ ... });
+
 ```
 <br>
 
@@ -130,6 +137,64 @@ await laraFetch(
 
 <br>
 
+## HELPER Methods
+Use dedicated methods for common HTTP verbs:
+Available: `get`, `post`, `put`, `patch`, `del`
+
+```js
+import { laraFetch } from "lara-fetch";
+// GET
+const res1 = await laraFetch.get("/api/user"); 
+
+// POST
+const res2 = await laraFetch.post("/login", {
+  body: JSON.stringify({ email, password }),
+});
+
+// PUT
+const res3 = await laraFetch.put("/api/user/1", {
+  body: JSON.stringify({ name: "New Name" }),
+});
+
+// PATCH
+const res4 = await laraFetch.patch("/api/user/1", {
+  body: JSON.stringify({ name: "Updated Name" }),
+});
+
+// DELETE
+const res5 = await laraFetch.del("/api/user/1");
+
+``` 
+
+### ✅ What helper methods do under the hood
+
+| `laraFetch` Method | HTTP Verb Sent     | Body Auto-Modified?                              | Behavior / Why                                                      |
+| ------------------ | ------------------ | ------------------------------------------------ | ------------------------------------------------------------------- |
+| `get()`            | GET                | ❌                                                | Normal GET, nothing special                                         |
+| `post()`           | POST               | ✅ (if form) `_method=POST`                       | Safe for Laravel form submits (even tho POST rarely needs spoofing) |
+| `put()`            | **PUT or POST**    | ✅ `_method=PUT` **if form**, else real PUT       | Laravel treats PUT over form as POST + spoof                        |
+| `patch()`          | **PATCH or POST**  | ✅ `_method=PATCH` **if form**, else real PATCH   | Same reason as PUT                                                  |
+| `del()`            | **DELETE or POST** | ✅ `_method=DELETE` **if form**, else real DELETE | Delete forms always need spoof in Laravel                           |
+   
+<br>
+
+### 🤖 Built-in auto detection
+
+| Body Format               | What laraFetch does                               |
+| ------------------------- | ------------------------------------------------- |
+| JSON (`application/json`) | Use real HTTP verbs (PUT/PATCH/DELETE)            |
+| `FormData`                | Convert request to POST + inject `_method=<verb>` |
+| `x-www-form-urlencoded`   | Same as FormData override ✅                      |
+| No body                   | Normal request Behavior                           |
+
+<br>
+
+### ✅ TL;DR: Defaults in one line
+> If it's JSON → send real method.
+> If its a form → spoof method with POST.
+
+<br>
+
 ## 🐛 Debugging
 Enable debug mode globally or per-request to see console logs:
 
@@ -146,17 +211,24 @@ await laraFetch("/endpoint", {}, { debug: true }); // Per-request
 Pre-fetch the CSRF cookie if needed:
 
 ```js
+import { laraFetch } from "lara-fetch";
+await laraFetch.getCsrfToken();
+
+//================= OR ===================
 import { laraCsrf } from "lara-fetch";
 
 await laraCsrf();
 // Now safe to make write requests
 ```
+
 > 💡 You can override baseURL, csrfPath, or any other config by passing an object to laraCsrf:
+
 ```js
-await laraCsrf({
-  baseURL: "https://staging.example.com",
-  csrfPath: "/sanctum/csrf-cookie",
-});
+await laraFetch.getCsrfToken({...override_configs});
+
+//================= OR ===================
+await laraCsrf({...override_configs});
+
 ```
 
 <br>
