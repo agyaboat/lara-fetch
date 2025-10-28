@@ -15,40 +15,52 @@ export declare function laraCsrf(
     override?: LaraConfig
 ): Promise<void>;
 
+export interface laraFetchOptions extends RequestInit {
+    query?: Record<string, any>;
+}
+
 export declare function laraFetch(
     path: string,
-    options?: RequestInit,
+    options?: laraFetchOptions,
     override?: LaraConfig
 ): Promise<Response>;
 
 export declare namespace laraFetch {
   function get(
     path: string,
-    options?: RequestInit,
+    options?: laraFetchOptions,
     override?: LaraConfig
   ): Promise<Response>;
 
   function post(
     path: string,
-    options?: RequestInit,
+    options?: laraFetchOptions,
     override?: LaraConfig
   ): Promise<Response>;
 
   function put(
     path: string,
-    options?: RequestInit,
+    options?: laraFetchOptions,
     override?: LaraConfig
   ): Promise<Response>;
 
   function patch(
     path: string,
-    options?: RequestInit,
+    options?: laraFetchOptions,
     override?: LaraConfig
   ): Promise<Response>;
 
   function del (
     path: string,
-    options?: RequestInit,
+    options?: laraFetchOptions,
     override?: LaraConfig
   ): Promise<Response>;
+
+  function configure(
+    options?: LaraConfig
+  )
+
+  function getCsrfToken(
+    override?: LaraConfig
+): Promise<void>;
 }

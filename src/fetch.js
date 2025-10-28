@@ -1,5 +1,6 @@
 import { config } from './config.js';
 import { laraCsrf } from './csrf.js';
+import { laraConfigure } from './config.js';
 
 export async function laraFetch(path, options = {}, override = {}) {
     const { baseURL, csrfPath, debug } = { ...config, ...override };
@@ -9,7 +10,15 @@ export async function laraFetch(path, options = {}, override = {}) {
     }
 
     const sanitized = path.replace(/^\/+/, '');
-    const url = baseURL + '/' + sanitized;
+    let url = baseURL + '/' + sanitized;
+
+    const queryOptions = options.query || {};
+    const queryString = new URLSearchParams(queryOptions).toString();
+    if (queryString) {
+        url += url.includes('?')
+            ? `&${queryString}`
+            : `?${queryString}`;
+    }
 
     const method = (options.method || 'GET').toUpperCase();
     const needsBodyToken = ['POST', 'PUT', 'PATCH', 'DELETE'].includes(method);
@@ -114,3 +123,11 @@ function normalizeMethod(originalMethod, body, headers = {}) {
         );
     };
 });
+
+laraFetch['configure'] = (options = {})=>{
+    laraConfigure(options)
+}
+
+laraFetch['getCsrfToken'] = (overrides = {})=>{
+    laraCsrf(overrides)
+}
