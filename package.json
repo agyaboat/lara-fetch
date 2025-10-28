@@ -8,7 +8,14 @@
   "scripts": {
     "prepare": "echo 'No build needed, vanilla JS ready to use'"
   },
-  "keywords": ["laravel", "fetch", "csrf", "spa", "vanilla-js"],
+  "keywords": ["larafetch", "laraFetch", "lara-fetch", "laravel", 
+      "fetch", "csrf", "spa", "vanilla-js", "http", "client", "api", 
+      "javascript", "typescript", "http-client", "http-request", 
+      "http-wrapper", "http-fetch", "http-library",
+      "rest-client", "rest-api", "rest-wrapper",
+      "http", "http-lib", "http-fetch-lib", "http-request-lib",
+      "nuxt", "nuxt3", "nuxtjs", "vue", "vue3", "vuejs"
+    ],
   "author": "Agyemang Bright <github.com/agyaboat/>",
   "license": "MIT",
   "repository": {
