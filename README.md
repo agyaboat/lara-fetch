@@ -3,13 +3,11 @@
 ![bundle size](https://img.shields.io/badge/bundle-3.83kb-brightgreen?style=flat-square)
 ![license](https://img.shields.io/npm/l/lara-fetch?style=flat-square)
 
-╔════════════════════════════════════╗
-║      lara-fetch 🛡️ Fetch Wrapper    ║
-║  Lightweight, CSRF-aware, TypeScript ✅ ║
-╚════════════════════════════════════╝
+
 A tiny fetch wrapper that handles **Laravel Sanctum CSRF** like a boss.
 
 ---
+<br>
 
 ## ⚡ Quick Features
 
@@ -26,6 +24,8 @@ Small library. Main character energy. 😎
 
 ---
 
+<br><br>
+
 ## 🚀 Install
 
 ```bash
@@ -35,6 +35,8 @@ yarn add lara-fetch
 # or
 pnpm add lara-fetch
 ```
+
+<br><br>
 
 ## 🧃 Basic Usage (Local Dev Quickstart)
 
@@ -46,6 +48,7 @@ pnpm add lara-fetch
 > ⚠️ **Warning:**  
 > Only use this **zero-config** setup for **local development**.  
 > Production requires proper configuration (next section ✅).
+<br>
 
 ### GET Example
 
@@ -57,6 +60,7 @@ const data = await res.json();
 
 console.log(data);
 ```
+<br>
 
 ### POST Example
 
@@ -70,6 +74,7 @@ const data = await res.json();
 console.log(data);
 ```
 
+<br><br>
 
 ## 🌍 Production Setup (Recommended)
 
@@ -89,6 +94,7 @@ laraConfigure({
   },
 });
 ```
+<br>
 
 ### Config options:
 
@@ -102,6 +108,7 @@ laraConfigure({
 | `debug`          | Enables console logs             | `false`                 |
 
 
+<br><br>
 
 ## 🎛️ Per-request Override
 
@@ -122,6 +129,7 @@ await laraFetch(
 ```
 > 💡 Only pass a third object parameter to `laraFetch`, including as many of the config options you want to override for this specific request.
 
+<br><br>
 
 ## 🐛 Debugging
 Enable debug mode globally or per-request to see console logs:
@@ -131,6 +139,8 @@ laraConfigure({ debug: true }); // Global
 // or
 await laraFetch("/endpoint", {}, { debug: true }); // Per-request
 ```
+
+<br><br>
 
 ## 🔐 Manual CSRF (Optional)
 
@@ -150,6 +160,8 @@ await laraCsrf({
 });
 ```
 
+<br><br>
+
 ## 🧠 TypeScript Support
 Type definitions are included. Example:
 
@@ -163,11 +175,14 @@ laraConfigure({
 > Autocomplete + type safety ✅
 > Dev confidence: 💯
 
+<br><br>
 
 ## License
 MIT License © [Agyemang Bright Boateng (Agya Boat)](https://github.com/agyaboat)
 Go Build stuff.
 ---
+
+<br><br>
 
 ## Contribute
 Contributions welcome! Feel free to open issues or PRs on [GitHub](https://github.com/agyaboat/lara-fetch).
