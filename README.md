@@ -96,7 +96,7 @@ laraFetch.configure({
 
 
 //=============  OR =================== 
-{ laraConfigure } from "lara-fetch";
+import { laraConfigure } from "lara-fetch";
 laraConfigure({ ... });
 
 ```
@@ -139,7 +139,12 @@ await laraFetch(
 
 ## HELPER Methods
 Use dedicated methods for common HTTP verbs:
+<br>
 Available: `get`, `post`, `put`, `patch`, `del`
+<br>
+
+📜 **NB**: 
+> No need to set `method` in options, these helpers do it for you.
 
 ```js
 import { laraFetch } from "lara-fetch";
