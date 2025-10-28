@@ -5,8 +5,6 @@
 
 
 A tiny fetch wrapper that handles **Laravel Sanctum CSRF** like a boss.
-
-<br>
 ---
 
 ## ⚡ Quick Features
@@ -21,8 +19,6 @@ A tiny fetch wrapper that handles **Laravel Sanctum CSRF** like a boss.
 - ✅ Lightweight — no Axios bloat
 
 Small library. Main character energy. 😎
-
-<br><br>
 ---
 
 ## 🚀 Install
@@ -35,7 +31,7 @@ yarn add lara-fetch
 pnpm add lara-fetch
 ```
 
-<br><br>
+<br>
 
 ## 🧃 Basic Usage (Local Dev Quickstart)
 
@@ -72,7 +68,7 @@ const data = await res.json();
 console.log(data);
 ```
 
-<br><br>
+<br>
 
 ## 🌍 Production Setup (Recommended)
 
@@ -106,7 +102,7 @@ laraConfigure({
 | `debug`          | Enables console logs             | `false`                 |
 
 
-<br><br>
+<br>
 
 ## 🎛️ Per-request Override
 
@@ -127,7 +123,7 @@ await laraFetch(
 ```
 > 💡 Only pass a third object parameter to `laraFetch`, including as many of the config options you want to override for this specific request.
 
-<br><br>
+<br>
 
 ## 🐛 Debugging
 Enable debug mode globally or per-request to see console logs:
@@ -138,7 +134,7 @@ laraConfigure({ debug: true }); // Global
 await laraFetch("/endpoint", {}, { debug: true }); // Per-request
 ```
 
-<br><br>
+<br>
 
 ## 🔐 Manual CSRF (Optional)
 
@@ -158,7 +154,7 @@ await laraCsrf({
 });
 ```
 
-<br><br>
+<br>
 
 ## 🧠 TypeScript Support
 Type definitions are included. Example:
@@ -173,14 +169,14 @@ laraConfigure({
 > Autocomplete + type safety ✅
 > Dev confidence: 💯
 
-<br><br>
+<br>
 
 ## License
 MIT License © [Agyemang Bright Boateng (Agya Boat)](https://github.com/agyaboat)
 Go Build stuff.
 ---
 
-<br><br>
+<br>
 
 ## Contribute
 Contributions welcome! Feel free to open issues or PRs on [GitHub](https://github.com/agyaboat/lara-fetch).
