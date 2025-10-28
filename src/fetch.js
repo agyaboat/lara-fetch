@@ -39,9 +39,6 @@ export async function laraFetch(path, options = {}, override = {}) {
         delete configDefaultHeaders['Content-Type'];
     }
 
-    console.log('config', config);
-    console.log('configDefaultHeaders', configDefaultHeaders);
-
     const headers = Object.assign(
         configDefaultHeaders || {},
         needsBodyToken && xsrfToken ? { [xsrf_string]: decodeURIComponent(xsrfToken) } : {},
