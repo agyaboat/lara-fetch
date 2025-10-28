@@ -6,7 +6,9 @@
 
 A tiny fetch wrapper that handles **Laravel Sanctum CSRF** like a boss.
 ---
+
 <br>
+
 ## ⚡ Quick Features
 
 - ✅ Auto CSRF cookie fetch on write operations (POST / PUT / PATCH / DELETE)
@@ -20,7 +22,9 @@ A tiny fetch wrapper that handles **Laravel Sanctum CSRF** like a boss.
 
 Small library. Main character energy. 😎
 ---
+
 <br>
+
 ## 🚀 Install
 
 ```bash
