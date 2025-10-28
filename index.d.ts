@@ -20,3 +20,35 @@ export declare function laraFetch(
     options?: RequestInit,
     override?: LaraConfig
 ): Promise<Response>;
+
+export declare namespace laraFetch {
+  function get(
+    path: string,
+    options?: RequestInit,
+    override?: LaraConfig
+  ): Promise<Response>;
+
+  function post(
+    path: string,
+    options?: RequestInit,
+    override?: LaraConfig
+  ): Promise<Response>;
+
+  function put(
+    path: string,
+    options?: RequestInit,
+    override?: LaraConfig
+  ): Promise<Response>;
+
+  function patch(
+    path: string,
+    options?: RequestInit,
+    override?: LaraConfig
+  ): Promise<Response>;
+
+  function del (
+    path: string,
+    options?: RequestInit,
+    override?: LaraConfig
+  ): Promise<Response>;
+}

@@ -24,8 +24,17 @@ export async function laraFetch(path, options = {}, override = {}) {
         ?.split('=')[1] || '';
 
     const xsrf_string = csrfCookieName ? `X-${csrfCookieName}` : 'X-XSRF-TOKEN';
+
+    const configDefaultHeaders = { ...(config.defaultHeaders || {}) };
+    if (options.body instanceof FormData) {
+        delete configDefaultHeaders['Content-Type'];
+    }
+
+    console.log('config', config);
+    console.log('configDefaultHeaders', configDefaultHeaders);
+
     const headers = Object.assign(
-        config.defaultHeaders || {},
+        configDefaultHeaders || {},
         needsBodyToken && xsrfToken ? { [xsrf_string]: decodeURIComponent(xsrfToken) } : {},
         options.headers || {},
         override.defaultHeaders || {}
@@ -48,3 +57,60 @@ export async function laraFetch(path, options = {}, override = {}) {
         throw err;
     }
 }
+
+/**
+ * Normalize method & body for Laravel compatibility.
+ * FormData or urlencoded bodies => force POST + _method
+ * JSON => use real HTTP verb
+ */
+function normalizeMethod(originalMethod, body, headers = {}) {
+    const method = originalMethod.toUpperCase();
+    const newHeaders = { ...headers };
+
+    if (body instanceof FormData) {
+        body.append('_method', method);
+        // Remove JSON Content-Type if present
+        if (newHeaders['Content-Type'] === 'application/json') delete newHeaders['Content-Type'];
+        return { method: 'POST', transformedBody: body, headers: newHeaders };
+    }
+
+    if (body && body.constructor.name === 'URLSearchParams') {
+        body.append('_method', method);
+        newHeaders['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
+        return { method: 'POST', transformedBody: body, headers: newHeaders };
+    }
+
+    if (
+        body &&
+        typeof body === 'object' &&
+        !(body instanceof Blob) &&
+        !(body instanceof ArrayBuffer)
+    ) {
+        if (!newHeaders['Content-Type']) newHeaders['Content-Type'] = 'application/json';
+    }
+
+    return { method, transformedBody: body, headers: newHeaders };
+}
+
+['get', 'post', 'put', 'patch', 'delete'].forEach((verb) => {
+    const met = verb === 'delete' ? 'del' : verb;
+    laraFetch[met] = async (path, options = {}, overrides = {}) => {
+        const { method: resolvedMethod, transformedBody, headers } = normalizeMethod(
+        verb.toUpperCase(),
+        options.body,
+        options.headers
+        );
+
+        // const leave_content_type_header = overrides.leave_content_type_header || false;  
+
+        options.headers = headers;
+        options.body = transformedBody;
+        options.method = resolvedMethod
+
+        return laraFetch(
+            path,
+            options,
+            overrides,
+        );
+    };
+});
