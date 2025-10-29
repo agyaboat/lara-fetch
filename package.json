@@ -1,6 +1,6 @@
 {
   "name": "lara-fetch",
-  "version": "0.3.11",
+  "version": "0.3.12",
   "description": "Vanilla JS fetch wrapper for Laravel SPAs with CSRF support",
   "main": "src/index.js",
   "module": "src/index.js",

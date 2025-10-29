@@ -57,7 +57,10 @@ export async function laraFetch(path, options = {}, override = {}) {
         if (debug) console.log(`laraFetch => ${method} ${url}`);
         const res = await fetch(url, fetchOptions);
         if (debug) console.log(`laraFetch => status: ${res.status}`);
-        return res;
+        if(res.status == 419){
+           laraFetch.getCsrfToken({fresh:true});
+        }
+	return res;
     } catch (err) {
         if (debug) console.error(`laraFetch => error:`, err);
         throw err;

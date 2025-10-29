@@ -12,7 +12,9 @@ export async function laraCsrf(override = {}) {
     .split('; ')
     .some(row => row.startsWith(csrfCookieName + '='));
 
-  if (hasCookie) {
+  const getFresh = override.fresh || false;
+
+  if (hasCookie && !getFresh) {
     if (debug) console.log('laraCsrf => CSRF cookie already exists ✅');
     return;
   }
