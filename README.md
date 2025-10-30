@@ -20,6 +20,7 @@ A tiny fetch wrapper that handles **Laravel Sanctum CSRF** like a boss.
 - ✅ **GET / POST / PUT / PATCH / DELETE** helper methods
 - ✅ Debug mode for console tracing
 - ✅ Lightweight
+- ✅ Browser support via jsdeliver
 
 Small library. Main character energy. 😎
 ---
@@ -208,6 +209,38 @@ laraConfigure({ debug: true }); // Global
 // or
 await laraFetch("/endpoint", {}, { debug: true }); // Per-request
 ```
+
+
+<br>
+
+## 🌍 Browser Support via CDN
+
+lara-fetch can be used directly in the browser — no build tools needed!
+
+### CDN Example:
+
+```js
+<script src="https://cdn.jsdelivr.net/npm/lara-fetch/dist/index.umd.js"></script>
+<script>
+  // Configure once
+  laraFetch.configure({
+    baseURL: 'https://jsonplaceholder.typicode.com',
+    debug: true
+  });
+
+  // Fetch example
+  laraFetch('users/3')
+    .then(res => res.json())
+    .then(console.log)
+    .catch(console.error);
+</script>
+
+```
+
+✅ Works out of the box in browsers
+✅ Same API as Node/Vite builds
+✅ Ideal for quick prototyping or Laravel SPA setups
+---
 
 <br>
 
