@@ -220,7 +220,7 @@ lara-fetch can be used directly in the browser — no build tools needed!
 ### CDN Example:
 
 ```js
-<script src="https://cdn.jsdelivr.net/npm/lara-fetch/dist/index.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lara-fetch@1.0.3/dist/index.umd.js"></script>
 <script>
   // Configure once
   laraFetch.configure({
@@ -229,7 +229,7 @@ lara-fetch can be used directly in the browser — no build tools needed!
   });
 
   // Fetch example
-  laraFetch('users/3')
+  laraFetch.get('users/3')
     .then(res => res.json())
     .then(console.log)
     .catch(console.error);
