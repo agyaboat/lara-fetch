@@ -8,6 +8,11 @@ export default {
     {
       file: 'dist/index.cjs.js',
       format: 'cjs'        // for Node.js require() consumers
+    },
+    {
+      name:'laraFetch',
+      file: 'dist/index.umd.js',
+      format: 'umd'        // for browsers
     }
   ]
 };
