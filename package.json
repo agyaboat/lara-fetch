@@ -1,10 +1,10 @@
 {
   "name": "lara-fetch",
-  "version": "0.3.12",
+  "version": "1.0.0",
   "description": "Vanilla JS fetch wrapper for Laravel SPAs with CSRF support",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
-   "exports": {
+  "exports": {
     ".": {
       "require": "./dist/index.cjs.js",
       "import": "./dist/index.esm.js",
@@ -14,7 +14,7 @@
   "scripts": {
     "build": "rollup -c && cp index.d.ts dist/"
   },
-   "files": [
+  "files": [
     "dist",
     "README.md"
   ],
