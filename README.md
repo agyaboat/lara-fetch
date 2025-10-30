@@ -240,6 +240,7 @@ lara-fetch can be used directly in the browser — no build tools needed!
 ✅ Works out of the box in browsers
 ✅ Same API as Node/Vite builds
 ✅ Ideal for quick prototyping or Laravel SPA setups
+
 ---
 
 <br>
@@ -289,6 +290,7 @@ laraConfigure({
 ## License
 MIT License © [Agyemang Bright Boateng (Agya Boat)](https://github.com/agyaboat)
 Go Build stuff.
+
 ---
 
 <br>
