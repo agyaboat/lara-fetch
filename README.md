@@ -1,5 +1,5 @@
 # 📦 lara-fetch 
-![npm](https://img.shields.io/npm/v/lara-fetch?color=crimson&style=flat-square&v=0.3.0)
+![npm](https://img.shields.io/npm/v/lara-fetch?color=1e90ff&style=flat-square)
 ![bundle size](https://img.shields.io/badge/bundle-5kb-brightgreen?style=flat-square)
 ![license](https://img.shields.io/npm/l/lara-fetch?style=flat-square)
 
