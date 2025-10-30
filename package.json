@@ -1,26 +1,64 @@
 {
   "name": "lara-fetch",
-  "version": "0.3.12",
+  "version": "1.0.0",
   "description": "Vanilla JS fetch wrapper for Laravel SPAs with CSRF support",
-  "main": "src/index.js",
-  "module": "src/index.js",
-  "type": "module",
-  "scripts": {
-    "prepare": "echo 'No build needed, vanilla JS ready to use'"
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs.js",
+      "import": "./dist/index.esm.js",
+      "types": "./dist/index.d.ts"
+    }
   },
-  "keywords": ["larafetch", "laraFetch", "lara-fetch", "laravel", 
-      "fetch", "csrf", "spa", "vanilla-js", "http", "client", "api", 
-      "javascript", "typescript", "http-client", "http-request", 
-      "http-wrapper", "http-fetch", "http-library",
-      "rest-client", "rest-api", "rest-wrapper",
-      "http", "http-lib", "http-fetch-lib", "http-request-lib",
-      "nuxt", "nuxt3", "nuxtjs", "vue", "vue3", "vuejs"
-    ],
+  "scripts": {
+    "build": "rollup -c && cp index.d.ts dist/"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "keywords": [
+    "larafetch",
+    "laraFetch",
+    "lara-fetch",
+    "laravel",
+    "fetch",
+    "csrf",
+    "spa",
+    "vanilla-js",
+    "http",
+    "client",
+    "api",
+    "javascript",
+    "typescript",
+    "http-client",
+    "http-request",
+    "http-wrapper",
+    "http-fetch",
+    "http-library",
+    "rest-client",
+    "rest-api",
+    "rest-wrapper",
+    "http",
+    "http-lib",
+    "http-fetch-lib",
+    "http-request-lib",
+    "nuxt",
+    "nuxt3",
+    "nuxtjs",
+    "vue",
+    "vue3",
+    "vuejs"
+  ],
   "author": "Agyemang Bright <github.com/agyaboat/>",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/agyaboat/lara-fetch.git"
   },
-  "types": "index.d.ts"
+  "types": "index.d.ts",
+  "devDependencies": {
+    "rollup": "^4.52.5"
+  }
 }
