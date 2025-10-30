@@ -183,4 +183,4 @@ laraFetch['getCsrfToken'] = (overrides = {})=>{
     laraCsrf(overrides);
 };
 
-export { laraFetch as default, laraConfigure, laraCsrf };
+export { laraConfigure, laraCsrf, laraFetch };

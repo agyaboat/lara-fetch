@@ -1,18 +1,20 @@
-export default {
-  input: 'src/index.js',   // your entry file
-  output: [
-    {
-      file: 'dist/index.esm.js',
-      format: 'esm'        // for modern bundlers like Vite, Next.js, etc.
-    },
-    {
-      file: 'dist/index.cjs.js',
-      format: 'cjs'        // for Node.js require() consumers
-    },
-    {
-      name:'laraFetch',
+export default [
+  // esm + cjs
+  {
+    input: 'src/index.js',
+    output: [
+      { file: 'dist/index.esm.js', format: 'esm' },
+      { file: 'dist/index.cjs.js', format: 'cjs' },
+    ]
+  },
+  // umd
+  {
+    input: 'src/umd.js',
+    output: {
+      name: 'laraFetch',
       file: 'dist/index.umd.js',
-      format: 'umd'        // for browsers
+      format: 'umd',
+      exports: 'default', // only one export
     }
-  ]
-};
+  }
+];

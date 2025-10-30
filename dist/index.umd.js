@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-    typeof define === 'function' && define.amd ? define(['exports'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.laraFetch = {}));
-})(this, (function (exports) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+    typeof define === 'function' && define.amd ? define(factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.laraFetch = factory());
+})(this, (function () { 'use strict';
 
     // Global shared configuration state
     const config = {
@@ -89,7 +89,7 @@
             .find(row => row.startsWith(`${csrfCookieName}=`))
             ?.split('=')[1] || '';
 
-        const xsrf_string = `X-${csrfCookieName}` ;
+        const xsrf_string = csrfCookieName ? `X-${csrfCookieName}` : 'X-XSRF-TOKEN';
 
         const configDefaultHeaders = { ...(config.defaultHeaders || {}) };
         if (options.body instanceof FormData) {
@@ -189,10 +189,6 @@
         laraCsrf(overrides);
     };
 
-    exports.default = laraFetch;
-    exports.laraConfigure = laraConfigure;
-    exports.laraCsrf = laraCsrf;
-
-    Object.defineProperty(exports, '__esModule', { value: true });
+    return laraFetch;
 
 }));

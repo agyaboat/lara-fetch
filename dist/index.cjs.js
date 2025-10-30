@@ -1,7 +1,5 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 // Global shared configuration state
 const config = {
     baseURL: 'http://localhost:8000',
@@ -187,6 +185,6 @@ laraFetch['getCsrfToken'] = (overrides = {})=>{
     laraCsrf(overrides);
 };
 
-exports.default = laraFetch;
 exports.laraConfigure = laraConfigure;
 exports.laraCsrf = laraCsrf;
+exports.laraFetch = laraFetch;
