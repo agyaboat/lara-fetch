@@ -20,7 +20,8 @@ A tiny fetch wrapper that handles **Laravel Sanctum CSRF** like a boss.
 - ✅ **GET / POST / PUT / PATCH / DELETE** helper methods
 - ✅ Debug mode for console tracing
 - ✅ Lightweight
-- ✅ Browser support via jsdeliver
+- ✅ Browser (CDN) support via jsdeliver
+- ❌ Limitation: Not SSR-friendly yet
 
 Small library. Main character energy. 😎
 ---
@@ -284,6 +285,16 @@ laraConfigure({
 ```
 > Autocomplete + type safety ✅
 > Dev confidence: 💯
+
+---
+
+<br>
+
+## ⚠️ Limitations:
+- Built strictly for SPAs powered by Laravel API backends.
+- Not SSR-friendly yet - currently working on universal support for server-side environments.
+
+---
 
 <br>
 
