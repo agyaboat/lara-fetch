@@ -21,7 +21,7 @@ A tiny fetch wrapper that handles **Laravel Sanctum CSRF** like a boss.
 - ✅ Debug mode for console tracing
 - ✅ Lightweight
 - ✅ Browser (CDN) support via jsdeliver
-- ❌ Limitation: Not SSR-friendly yet
+
 
 Small library. Main character energy. 😎
 ---
